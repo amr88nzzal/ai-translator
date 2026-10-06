@@ -1,0 +1,30 @@
+# سياق بناء نظيف: كل ما لا يحتاجه البناء داخل الحاوية.
+node_modules
+dist
+.git
+.github
+.gitignore
+.gitattributes
+.npm-cache
+.pnpm-store
+*.log
+logs
+
+# لا تُنسخ الأسرار إلى الصورة إطلاقًا.
+.env
+.env.*
+!.env.example
+
+# وثائق وملفات نشر لا تلزم داخل الصورة.
+docs
+deploy
+README.md
+*.md
+
+# محرّرات وأنظمة
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+coverage
+*.tsbuildinfo

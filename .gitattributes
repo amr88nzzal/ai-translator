@@ -1,0 +1,35 @@
+# ============================================================================
+# توحيد نهايات الأسطر: ملفات السكربتات يجب أن تبقى LF لتعمل على السيرفر،
+# وإلا فشل التشغيل بخطأ مثل: /usr/bin/env: 'bash\r': No such file or directory
+# ============================================================================
+
+* text=auto eol=lf
+
+*.sh        text eol=lf
+*.mjs       text eol=lf
+*.ts        text eol=lf
+*.tsx       text eol=lf
+*.js        text eol=lf
+*.json      text eol=lf
+*.yaml      text eol=lf
+*.yml       text eol=lf
+*.md        text eol=lf
+*.py        text eol=lf
+Dockerfile  text eol=lf
+
+*.ps1       text eol=crlf
+*.cmd       text eol=crlf
+*.bat       text eol=crlf
+
+# ملفات ثنائية
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.webp      binary
+*.ico       binary
+*.woff      binary
+*.woff2     binary
+
+# مستثنى من الإحصاءات
+package-lock.json linguist-generated=true
+pnpm-lock.yaml    linguist-generated=true

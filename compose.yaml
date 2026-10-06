@@ -1,0 +1,86 @@
+# ============================================================================
+# المترجم الصوتي والسياقي الذكي — نشر إنتاجي على سيرفر ARM64
+#   docker compose -f compose.yaml up -d --build
+#
+# الخدمات:
+#   app        : خادم Express يقدّم الواجهة المبنية وواجهات /api  (منفذ داخلي 3500)
+#   cloudflared: نفق Cloudflare يربط الدومين الفرعي بالخدمة عبر شبكة Docker الداخلية
+#
+# لماذا النفق وليس A record مباشر؟
+#   Cloudflare لا يقبل الاتصال بالمنفذ 3500 على الأصل (منافذ البروكسي المسموحة هي
+#   80/8080/8880/2052/2082/2086/2095 و 443/2053/2083/2087/2096/8443 فقط).
+#   النفق يجعل الدومين الفرعي يصل إلى المنفذ 3500 داخليًا، دون فتح أي منفذ
+#   للإنترنت ودون كشف IP السيرفر، ومع TLS مجاني من Cloudflare.
+#
+# ملاحظة أمنية: لا يُنشر أي منفذ على الإنترنت. المنفذ 3500 مربوط على
+# 127.0.0.1 فقط (للفحص المحلي من السيرفر)، وكل الوصول العام يمر عبر النفق.
+# ============================================================================
+
+name: ai-translator
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${APP_IMAGE:-ai-translator:latest}
+    container_name: ai-translator-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      # المنفذ الذي يستمع عليه الخادم داخل الحاوية = 3500
+      PORT: "3500"
+      HOST: 0.0.0.0
+      # حد ذاكرة V8 مناسب لسيرفرات ARM64 الصغيرة (1-2GB).
+      NODE_OPTIONS: ${NODE_OPTIONS:---max-old-space-size=640}
+    ports:
+      # للفحص المحلي فقط: http://127.0.0.1:3500/api/health
+      # غيّر APP_PORT لو أردت منفذًا مختلفًا على المضيف (الداخل يبقى 3500).
+      - "${APP_BIND:-127.0.0.1}:${APP_PORT:-3500}:3500"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3500/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - edge
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: ai-translator-tunnel
+    restart: unless-stopped
+    # صيغة النفق المُدار عن بُعد (Remote-managed) عبر التوكن:
+    # تُعرّف الدومين الفرعي والخدمة الهدف من لوحة Cloudflare Zero Trust.
+    #   Public Hostname → Service: HTTP  →  app:3500
+    command:
+      - tunnel
+      - --no-autoupdate
+      - run
+      - --token
+      - ${CLOUDFLARE_TUNNEL_TOKEN:?ضع CLOUDFLARE_TUNNEL_TOKEN في ملف .env}
+    depends_on:
+      app:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - edge
+
+networks:
+  edge:
+    driver: bridge

@@ -1,0 +1,40 @@
+# ---------- تبعيات ----------
+node_modules/
+.npm-cache/
+.pnpm-store/
+.pnpm-store-inspect/
+
+# ---------- مخرجات البناء ----------
+dist/
+*.tsbuildinfo
+coverage/
+
+# ---------- أسرار: لا تُرفع أبدًا ----------
+# النموذج `deploy/.env.deploy.example` غير مشمول ويُرفع عن قصد.
+.env
+.env.local
+.env.*.local
+!.env.example
+!deploy/.env.deploy.example
+
+# ---------- نظام ومحرّرات ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# ---------- سجلات ومؤقتات ----------
+*.log
+logs/
+tmp/
+temp/
+.npm/
+# تجاهل ملفات الـ Flutter SDK والملفات المضغوطة
+*.tar.xz
+*.zip
+
+# تجاهل قواعد البيانات والملفات التنفيذية الثقيلة
+*.tcbfile
+firebird/exe/

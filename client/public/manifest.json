@@ -1,0 +1,88 @@
+{
+  "id": "/?source=pwa",
+  "name": "المترجم الصوتي والسياقي الذكي",
+  "short_name": "المترجم الذكي",
+  "description": "مترجم صوتي ونصي سياقي ثنائي اللغة (عربي/إنجليزي) يعمل بالذكاء الاصطناعي متعدد الوسائط: ترجمة فورية للصوت، استخراج المصطلحات التخصصية، وتكييف النبرة والمجال.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "theme_color": "#4f46e5",
+  "background_color": "#0f172a",
+  "categories": ["productivity", "education", "utilities"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "ترجمة صوتية",
+      "short_name": "صوت",
+      "description": "ابدأ تسجيلًا صوتيًا سريعًا للترجمة الفورية",
+      "url": "/?mode=audio",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "ترجمة نصية",
+      "short_name": "نص",
+      "description": "ترجم نصًا مكتوبًا مع تحليل سياقي",
+      "url": "/?mode=text",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "البث المباشر",
+      "short_name": "بث",
+      "description": "نمط الاستماع المستمر للمحاضرات والاجتماعات",
+      "url": "/?mode=continuous",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "واجهة الترجمة الصوتية والسياقية"
+    },
+    {
+      "src": "/icons/screenshot-mobile.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "واجهة الجوال"
+    }
+  ]
+}

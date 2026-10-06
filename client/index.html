@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+
+    <title>المترجم الصوتي والسياقي الذكي — ترجمة فورية بالذكاء الاصطناعي</title>
+    <meta
+      name="description"
+      content="مترجم صوتي ونصي سياقي ثنائي اللغة (عربي/إنجليزي) يعمل بالذكاء الاصطناعي متعدد الوسائط: ترجمة مباشرة للصوت مع استخراج المصطلحات التخصصية وتكييف النبرة والمجال."
+    />
+    <meta name="application-name" content="المترجم الذكي" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="المترجم الذكي" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
+    <link rel="mask-icon" href="/icons/maskable-512.png" color="#4f46e5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://generativelanguage.googleapis.com" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <noscript>
+      <div
+        style="
+          font-family: 'Cairo', sans-serif;
+          padding: 2rem;
+          text-align: center;
+          direction: rtl;
+          color: #0f172a;
+          background: #f4f6fb;
+          min-height: 100vh;
+        "
+      >
+        <h1>المترجم الصوتي والسياقي الذكي</h1>
+        <p>هذا التطبيق يحتاج تشغيل JavaScript في المتصفح ليعمل.</p>
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

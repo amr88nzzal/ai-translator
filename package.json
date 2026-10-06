@@ -1,0 +1,49 @@
+{
+  "name": "smart-translator-pwa",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "المترجم الصوتي والسياقي الذكي — Smart Contextual Voice & Text Translator (Arabic RTL / English LTR PWA)",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch server/start.ts",
+    "dev:server": "tsx server/start.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "node scripts/build-client.mjs",
+    "build:server": "esbuild server/start.ts --bundle --platform=node --target=node20 --format=cjs --external:@google/genai --external:express --external:vite --outfile=dist/server.cjs --log-level=warning && esbuild server/dev.ts --bundle --platform=node --target=node20 --format=cjs --external:@google/genai --external:express --external:vite --outfile=dist/dev.cjs --log-level=warning",
+    "build:server:api": "node scripts/build-server.mjs",
+    "start": "node dist/server.cjs",
+    "icons": "python scripts/generate-icons.py",
+    "validate:yaml": "node scripts/validate-yaml.mjs",
+    "validate:shell": "node scripts/validate-shell.mjs",
+    "validate:deploy": "node scripts/validate-yaml.mjs && node scripts/validate-shell.mjs"
+  },
+  "dependencies": {
+    "@google/genai": "^2.27.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "lucide-react": "^1.52.0",
+    "motion": "^14.0.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "esbuild": "^0.28.2",
+    "rollup": "^4.64.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.3"
+  }
+}

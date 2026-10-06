@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="المترجم الصوتي والسياقي الذكي">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="55%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <rect width="512" height="256" rx="112" fill="url(#glow)" />
+
+  <!-- Globe / language grid -->
+  <g stroke="#e0e7ff" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.95">
+    <circle cx="256" cy="212" r="104" />
+    <ellipse cx="256" cy="212" rx="46" ry="104" />
+    <path d="M156 176h200M156 248h200" />
+  </g>
+
+  <!-- Sound wave accents -->
+  <g fill="#c7d2fe" opacity="0.95">
+    <rect x="96" y="196" width="18" height="32" rx="9" />
+    <rect x="128" y="176" width="18" height="72" rx="9" />
+    <rect x="366" y="176" width="18" height="72" rx="9" />
+    <rect x="398" y="196" width="18" height="32" rx="9" />
+  </g>
+
+  <!-- Arabic letter "ت" for "ترجمة" rendered as a stroke path for crispness -->
+  <g fill="#ffffff">
+    <path d="M212 356c0-9 7-16 16-16h43c6 0 11 3 14 8l6 10h9c9 0 16-7 16-16s7-16 16-16 16 7 16 16c0 26-21 48-48 48h-11c-14 0-27-7-35-19l-3-5h-23c-9 0-16-7-16-16z" />
+    <circle cx="176" cy="388" r="15" />
+    <circle cx="350" cy="300" r="13" opacity="0.9" />
+  </g>
+</svg>

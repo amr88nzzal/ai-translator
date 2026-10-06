@@ -1,0 +1,31 @@
+# pnpm settings for this project.
+#
+# npm is the primary package manager (`package-lock.json` is committed and used by
+# Docker and CI). This file only exists so that `pnpm install` also works if you
+# prefer pnpm — the resulting `node_modules` is equivalent.
+#
+# Why a hoisted layout: pnpm's default `isolated` layout keeps packages in
+# `node_modules/.pnpm` behind directory junctions, and Node's resolver does not
+# reliably follow those reparse points on Windows (especially inside
+# OneDrive-synced folders). The symptom is a misleading missing package:
+#
+#   Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'rolldown'
+#     imported from .../node_modules/vite/dist/node/chunks/node.js
+#
+# even though the package is installed. A hoisted layout removes every junction
+# from the resolution path.
+node-linker: hoisted
+
+# Dependency install scripts are unnecessary here: every native dependency ships
+# a prebuilt binary (esbuild via @esbuild/<platform>, Tailwind's oxide and
+# lightningcss via their own platform packages), and @google/genai / protobufjs
+# are pure JS. Skipping them also keeps `install` working in sandboxes that block
+# spawned child processes.
+neverBuiltDependencies:
+  - esbuild
+  - '@google/genai'
+  - protobufjs
+
+# pnpm 11 gates very fresh releases; allow the Vite 8 build this project pins.
+minimumReleaseAgeExclude:
+  - vite@8.3.3
